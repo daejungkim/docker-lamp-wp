@@ -6,6 +6,7 @@
 		Options FollowSymLinks
 		AllowOverride None
 	</Directory>
+
 	<Directory /var/www/>
 		Options Indexes FollowSymLinks MultiViews
 		AllowOverride All
