@@ -26,6 +26,7 @@ ADD ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 #
 
 RUN apt-get install -y apache2 php5 php5-curl php5-mysql php5-mcrypt
+RUN a2enmod rewrite
 
 # Bundle everything and install
 ADD ./src /var/www
