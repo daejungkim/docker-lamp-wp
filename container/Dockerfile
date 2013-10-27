@@ -1,0 +1,64 @@
+# MySQL Server with Apache and phpmyadmin
+#
+# VERSION               0.0.1
+
+FROM     base
+MAINTAINER Jonas Colmsjö "jonas@gizur.com"
+
+
+# Keep upstart from complaining
+RUN dpkg-divert --local --rename --add /sbin/initctl
+RUN ln -s /bin/true /sbin/initctl
+
+RUN apt-get update
+
+
+#
+# Install supervidord (used to handle processes)
+#
+
+RUN apt-get install -y supervisor
+ADD ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+
+#
+# Install Apache and PHP
+#
+
+RUN apt-get install -y apache2 php5 php5-curl php5-mysql php5-mcrypt
+
+# Bundle everything and install
+ADD ./src /var/www
+ADD ./conf/etc /etc
+
+RUN cd /var/www; tar -xzf phpMyAdmin-4.0.8-all-languages.tar.gz
+RUN rm /var/www/index.html
+
+ADD ./src/config.inc.php /var/www/phpMyAdmin-4.0.8-all-languages/config.inc.php
+
+
+#
+# Install Wordpress
+#
+
+ADD ./src3 /var/www
+
+
+#
+# Install MySQL
+#
+
+# Bundle everything
+ADD ./src2 /src
+
+# Install MySQL server
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Fix configuration
+RUN sed -i -e"s/^bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
+
+# Setup admin user
+RUN /src/mysql-setup.sh
+
+EXPOSE 3306 8080 8443
+CMD ["supervisord","-n"]
