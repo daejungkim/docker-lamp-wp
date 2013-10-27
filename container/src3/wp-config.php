@@ -15,31 +15,17 @@
  */
 
 // Used by Heroku
-define('WP_SITEURL', 'http://' . $_SERVER['SERVER_NAME'] );
+//define('WP_SITEURL', 'http://' . $_SERVER['SERVER_NAME'] );
 
 // ** MySQL settings - You can get this info from your web host ** //
 
-
-/* HEROKU WAY, UNCOMMENT THIS SECTION IF YOU WANT TO USE */
-/*
-if (isset($_SERVER["DATABASE_URL"])) {
- $db = parse_url($_SERVER["DATABASE_URL"]);
- define("DB_NAME", trim($db["path"],"/"));
- define("DB_USER", $db["user"]);
- define("DB_PASSWORD", $db["pass"]);
- define("DB_HOST", $db["host"]);
-}
-else {
- die("Your heroku DATABASE_URL does not appear to be correctly specified.");
-}
-*/
 
 /** Database configuration for  WordPress */
 /* Comment out this section when deploying on Heroku */
 define('DB_NAME', 'gizur_com');
 define('DB_USER', 'gizur_com');
 define('DB_PASSWORD', '48796e76');
-define('DB_HOST', 'mysql.local');
+define('DB_HOST', 'localhost');
 
 
 /** Database Charset to use in creating database tables. */
