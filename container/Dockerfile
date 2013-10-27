@@ -50,6 +50,7 @@ ADD ./src3 /var/www
 
 # Bundle everything
 ADD ./src2 /src
+ADD ./sql-script/latest /sql-script/latest
 
 # Install MySQL server
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server && apt-get clean && rm -rf /var/lib/apt/lists/*
