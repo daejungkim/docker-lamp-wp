@@ -43,7 +43,7 @@ ADD ./src/config.inc.php /var/www/phpMyAdmin-4.0.8-all-languages/config.inc.php
 #
 
 ADD ./src3 /var/www
-
+RUN chmod a+w /var/www/wp-content/uploads
 
 #
 # Install MySQL
