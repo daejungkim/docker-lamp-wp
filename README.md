@@ -57,7 +57,7 @@ MySQL:
 
 Worpress:
 
- * admin / 4911287a
+ * admin / c2f5976f
 
 
 Development environemnet
