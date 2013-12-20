@@ -8,7 +8,17 @@ repo: https://github.com/colmsjo/docker
 Installation
 -----------
 
-Build the container: `docker build .`
+To install you could use the install script (requires Git) using cURL:
+
+`curl https://raw.github.com/gizur/gizur-wp-21/master/install.sh | sh`
+
+or Wget:
+
+`wget -qO- https://raw.github.com/gizur/gizur-wp-21/master/install.sh | sh`
+
+
+Or clone this repo manually and build the container: `cd container && docker build .`
+
 
 Save the ID of the new image in `/etc/environment` for easy access.
 
