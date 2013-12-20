@@ -17,7 +17,7 @@ else
   git clone https://github.com/gizur/gizur-wp-21.git $GC_DIR  
 fi
 
-cd $GC_DIR/container && docker build .
+cd $GC_DIR/container && docker -H=tcp://127.0.0.1:4243' build .
 
 echo "=> Installed $DC_DIR"
 
